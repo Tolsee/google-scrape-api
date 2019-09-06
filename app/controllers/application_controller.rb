@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::Base
-	include Localization
+  respond_to :json
+
+  include Localization
 end
