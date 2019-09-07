@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # Configure devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Configure Bullet gem to detect N+1 queries
   config.after_initialize do
     Bullet.enable        = true

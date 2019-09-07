@@ -1,3 +1,5 @@
-class ApplicationController < ActionController::Base
-	include Localization
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+
+  include Localization
 end

@@ -16,6 +16,7 @@ gem 'i18n-js' # A library to provide the I18n translations on the Javascript
 
 # Authentications & Authorizations
 gem 'devise' # Authentication solution for Rails with Warden
+gem 'devise-jwt', '~> 0.6.0'
 gem 'pundit' # Minimal authorization through OO design and pure Ruby classes
 
 # Assets

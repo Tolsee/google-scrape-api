@@ -1,3 +1,19 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Route configuration for devise
+  devise_for :users,
+             path: '',
+             path_names: {
+               sign_in: 'login',
+               sign_out: 'logout',
+               registration: 'signup'
+             },
+             controllers: {
+               sessions: 'user_sessions',
+               registrations: 'user_registrations'
+             },
+             defaults: {
+               format: :json
+             }
+
+  resources :health, only: [:index]
 end
