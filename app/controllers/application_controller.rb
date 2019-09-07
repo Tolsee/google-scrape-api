@@ -1,5 +1,5 @@
-class ApplicationController < ActionController::Base
-  respond_to :json
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
 
   include Localization
 end
