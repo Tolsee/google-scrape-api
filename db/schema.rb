@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_143046) do
+ActiveRecord::Schema.define(version: 2019_09_07_091701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,31 @@ ActiveRecord::Schema.define(version: 2019_09_06_143046) do
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_blacklist_on_jti"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "term", null: false
+    t.decimal "total_results"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["term"], name: "index_keywords_on_term"
+  end
+
+  create_table "keywords_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "keyword_id"
+    t.index ["keyword_id"], name: "index_keywords_users_on_keyword_id"
+    t.index ["user_id"], name: "index_keywords_users_on_user_id"
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "link", null: false
+    t.string "text"
+    t.string "type"
+    t.bigint "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["keyword_id"], name: "index_links_on_keyword_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +58,6 @@ ActiveRecord::Schema.define(version: 2019_09_06_143046) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "keywords_users", "keywords"
+  add_foreign_key "keywords_users", "users"
 end
