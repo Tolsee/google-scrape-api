@@ -20,4 +20,11 @@ describe User, type: :model do
   it 'should create user successfully' do
     expect(described_class.new(email: 'test@test.com', password: 'testpass')).to be_valid
   end
+
+  it 'should have many keywords users' do
+    is_expected.to have_many(:keyword_users)
+  end
+  it 'should have many keywords through keywords users' do
+    is_expected.to have_many(:keywords)
+  end
 end
