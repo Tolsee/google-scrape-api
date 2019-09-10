@@ -15,5 +15,7 @@ Rails.application.routes.draw do
                format: :json
              }
 
+  get '/me', to: 'user#me'
+
   resources :health, only: [:index]
 end
