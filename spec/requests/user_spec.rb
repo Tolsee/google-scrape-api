@@ -12,7 +12,7 @@ RSpec.describe UserController, type: %i[request controller] do
     end
 
     it 'should return authenticated user for me api' do
-      expect(JSON.parse(response.body)["id"]).to eq(user.id)
+      expect(JSON.parse(response.body)['id']).to eq(user.id)
     end
 
     it 'should return success status' do

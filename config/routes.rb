@@ -17,5 +17,13 @@ Rails.application.routes.draw do
 
   get '/me', to: 'user#me'
 
+  namespace :api do
+    resources :keywords, only: [:index] do
+      collection do
+        post 'batch', to: 'keywords#batch'
+      end
+    end
+  end
+
   resources :health, only: [:index]
 end
