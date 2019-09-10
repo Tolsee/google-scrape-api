@@ -25,6 +25,9 @@ gem 'uglifier'
 
 gem 'rack-cors', '~> 1.0'
 
+# Bulk import
+gem 'activerecord-import'
+
 # Translations
 # gem 'rails-i18n', '~> 5.1' # Translations for Rails
 # gem 'devise-i18n' # Translations for Devise
