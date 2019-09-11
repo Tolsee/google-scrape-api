@@ -32,5 +32,8 @@ module Api
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Load lib
+    config.eager_load_paths << Rails.root.join('app', 'lib')
   end
 end
