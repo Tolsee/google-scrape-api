@@ -5,4 +5,11 @@ class User < ApplicationRecord
 
   has_many :keyword_users, dependent: :destroy
   has_many :keywords, through: :keyword_users
+
+  def keyword_results
+    keywords
+      .left_outer_joins(:links)
+      .select('keywords.id, keywords.total_results, keywords.term, links.type, COUNT(links.id) as count')
+      .group('keywords.id', 'links.type')
+  end
 end

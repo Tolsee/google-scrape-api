@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_184327) do
+ActiveRecord::Schema.define(version: 2019_09_10_142134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_184327) do
   create_table "keywords_users", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "keyword_id"
+    t.index ["keyword_id", "user_id"], name: "index_keywords_users_on_keyword_id_and_user_id", unique: true
     t.index ["keyword_id"], name: "index_keywords_users_on_keyword_id"
     t.index ["user_id"], name: "index_keywords_users_on_user_id"
   end
