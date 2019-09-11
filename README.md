@@ -4,9 +4,8 @@
 
 Rails api for Google result page scraper. 
 
-Frontend Repo: https://github.com/Tolsee/google-scrape-api
-
-Demo: https://desolate-sierra-98374.herokuapp.com/ 
+* Frontend Repo: https://github.com/Tolsee/google-scrape-ui
+* Demo: https://desolate-sierra-98374.herokuapp.com/ 
 
 ## Project Setup
 
