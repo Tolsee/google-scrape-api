@@ -29,18 +29,21 @@ module Api
     end
 
     def import_keywords(terms)
-      new_terms = find_new_terms(terms)
+      new_terms = new_terms(terms)
+      keyword_objects = new_terms.map { |term| Keyword.new(term: term) }
 
-      new_keywords_objects = new_terms.map { |term| Keyword.new(term: term) }
-      keywords = Keyword.import new_keywords_objects
+      keywords = Keyword.import keyword_objects
 
       keywords_users_objects = keywords.ids.map do |keyword_id|
         KeywordUser.new(keyword_id: keyword_id, user_id: current_user.id)
       end
+
       KeywordUser.import keywords_users_objects
+
+      GoogleScrapeBatchWorker.perform_async(keywords.ids)
     end
 
-    def find_new_terms(terms)
+    def new_terms(terms)
       keywords_present = Keyword.where(term: terms)
       terms.select do |term|
         keyword_present = keywords_present.find { |keyword| term == keyword.term }
