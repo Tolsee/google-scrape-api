@@ -4,22 +4,20 @@ class GoogleScrape
   end
 
   def scrape
-    puts results
-    ::Link::Base.import(results)
+    ::Link::Base.import(results.compact)
   end
 
   private
 
   def results
     all_results = search_google
-    puts all_results
     all_results.links.map do |link|
       if link_result?(link.href)
         ::Link::Result.new(link: scrub_url(link.href), text: link.text, keyword: @keyword)
       elsif link_ad?(link.href)
         ::Link::Ad.new(link: link.href, text: link.text, keyword: @keyword)
       end
-    end.reject(&:nil?)
+    end
   end
 
   def search_google
@@ -47,5 +45,3 @@ class GoogleScrape
     agent
   end
 end
-
-
