@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Tolsee/google-scrape-api.svg?branch=master)](https://travis-ci.org/Tolsee/google-scrape-api)
+
 ## Introduction
 
 Rails api for Google result page scraper. 
